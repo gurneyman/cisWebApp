@@ -1,0 +1,5 @@
+database.driver=oracle.jdbc.driver.OracleDriver 
+database.url=jdbc:oracle:thin:@192.168.10.114:1521/xe  
+database.user=CIS4160  
+database.password=thomas  
+hibernate.dialect=org.hibernate.dialect.Oracle10gDialect

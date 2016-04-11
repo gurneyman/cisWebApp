@@ -20,8 +20,8 @@ public class HelloController {
 	//@RequestMapping(method = RequestMethod.GET)
 	@RequestMapping("/hello")
 	public String printHello(ModelMap model) {
-		List<AdminUser> adminUsers = adminUserRepository.getUserList();
-		model.addAttribute("adminUsers", adminUsers);
+//		List<AdminUser> adminUsers = adminUserRepository.getUserList();
+//		model.addAttribute("adminUsers", adminUsers);
 		model.addAttribute("message", "Hello Spring MVC Framework!");
 		return "hello";
 	}

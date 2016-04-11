@@ -1,15 +1,18 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="
         http://www.springframework.org/schema/beans     
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/mvc 
         http://www.springframework.org/schema/mvc/spring-mvc.xsd
         http://www.springframework.org/schema/context 
-        http://www.springframework.org/schema/context/spring-context.xsd">
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx  
+http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 
-	<context:component-scan base-package="com.tutorialspoint" />
+	<context:property-placeholder location="classpath:jdbc.properties" />
+	<context:component-scan base-package="com.tutorialspoint" /> 
 
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -17,11 +20,44 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="${database.driver}" />
+		<property name="url" value="${database.url}" />
+		<property name="username" value="${database.user}" />
+		<property name="password" value="${database.password}" />
+		
+		
+	</bean>
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="annotatedClasses">  
+            <list>  
+                <value>com.tutorialspoint.model.AdminUser</value>  
+            </list>  
+        </property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+			</props>
+		</property>
+	</bean>
+
+
+
+	<bean id="hibernateTransactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
 
 	<mvc:resources mapping="/resources/**" location="/resources/"
 		cache-period="31556926" />
 	<mvc:annotation-driven />
-	
+
 
 
 </beans>
