@@ -5,12 +5,17 @@
 <hibernate-configuration>
 	<session-factory>
 		<property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
-		<property name="hibernate.connection.url">jdbc:oracle:thin:@192.168.10.114:1521/xe</property>
+		<!-- <property name="hibernate.connection.url">jdbc:oracle:thin:@192.168.10.114:1521/xe</property>
 		<property name="hibernate.connection.username">CIS4160</property>
-		<property name="hibernate.connection.password">thomas</property>
+		<property name="hibernate.connection.password">thomas</property> -->
+		
+		<property name="hibernate.connection.url">jdbc:oracle:thin:@10.9.2.51:1521/pdb2</property>
+		<property name="hibernate.connection.username">TPrince</property>
+		<property name="hibernate.connection.password">TPrince848</property>
+		
 		<property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
 		
-		<mapping class="com.tutorialspoint.model.AdminUser" />
+		<!-- <mapping class="com.tutorialspoint.model.AdminUser" /> -->
 	</session-factory>
 	
 	
