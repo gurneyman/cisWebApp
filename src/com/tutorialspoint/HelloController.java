@@ -5,8 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.tutorialspoint.data.AdminUserRepository;
-import com.tutorialspoint.model.AdminUser;
+import com.tutorialspoint.service.AdminUserService;
+import com.tutorialspoint.domain.AdminUser;
 
 import org.springframework.ui.ModelMap;
 
@@ -14,14 +14,14 @@ import java.util.List;
 
 @Controller
 public class HelloController {
-	@Autowired
-    private AdminUserRepository adminUserRepository;
+	@Autowired  
+    private AdminUserService adminUserService; 
 
 	//@RequestMapping(method = RequestMethod.GET)
 	@RequestMapping("/hello")
 	public String printHello(ModelMap model) {
-//		List<AdminUser> adminUsers = adminUserRepository.getUserList();
-//		model.addAttribute("adminUsers", adminUsers);
+		List<AdminUser> adminUsers = adminUserService.getUser();
+		model.addAttribute("adminUsers", adminUsers);
 		model.addAttribute("message", "Hello Spring MVC Framework!");
 		return "hello";
 	}
@@ -29,7 +29,7 @@ public class HelloController {
 	public String printTest(ModelMap model) {
 		//List<AdminUser> adminUsers = adminUserRepository.getUserList();
 		//model.addAttribute("adminUsers", adminUsers);
-		adminUserRepository.addUser();
+		//adminUserService.addUser();
 		model.addAttribute("message", "Hello Spring MVC Framework!");
 		return "test/test";
 	}

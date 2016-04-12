@@ -5,4 +5,4 @@
  * @author thomas
  *
  */
-package com.tutorialspoint.model;
+package com.tutorialspoint.service;

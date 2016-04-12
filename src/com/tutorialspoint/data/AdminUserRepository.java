@@ -16,7 +16,7 @@ import org.hibernate.metamodel.MetadataSources;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.tutorialspoint.model.AdminUser;
+import com.tutorialspoint.domain.AdminUser;
 
 @Component
 public class AdminUserRepository {

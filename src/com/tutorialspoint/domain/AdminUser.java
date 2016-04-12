@@ -1,4 +1,4 @@
-package com.tutorialspoint.model;
+package com.tutorialspoint.domain;
 
 import javax.persistence.*;
 
