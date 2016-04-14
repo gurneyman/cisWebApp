@@ -29,7 +29,9 @@ public class HelloController {
 	public String printTest(ModelMap model) {
 		//List<AdminUser> adminUsers = adminUserRepository.getUserList();
 		//model.addAttribute("adminUsers", adminUsers);
-		//adminUserService.addUser();
+		AdminUser newUser = new AdminUser("1", "1","1", "tommy", "passwerd");
+		System.out.println("Trying to add: " + newUser.getUserName());
+		adminUserService.addUser(newUser);
 		model.addAttribute("message", "Hello Spring MVC Framework!");
 		return "test/test";
 	}

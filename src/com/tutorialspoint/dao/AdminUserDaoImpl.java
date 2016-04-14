@@ -17,13 +17,15 @@ public class AdminUserDaoImpl implements AdminUserDao {
     private SessionFactory sessionfactory;  
   
   
-    @Override    
+    @Override
+    @Transactional
     public void saveUser(AdminUser user) {  
         sessionfactory.getCurrentSession().saveOrUpdate(user);  
     }  
   
   
-    @Override    
+    @Override
+    @Transactional
     public List<AdminUser> getUser() {  
   
         @SuppressWarnings("unchecked")  
