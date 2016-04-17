@@ -1,5 +1,7 @@
 package com.tutorialspoint;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,6 +21,11 @@ public class TestRestController {
 	@RequestMapping(value = "user", method = RequestMethod.GET, produces="application/json")
 	public AdminUser getUser(){
 		return new AdminUser("1", "1","1", "tommy", "passwerd");
+	}
+	
+	@RequestMapping(value = "users", method = RequestMethod.GET, produces="application/json")
+	public List<AdminUser> getUsers(){
+		return adminUserService.getUser();
 	}
 
 }

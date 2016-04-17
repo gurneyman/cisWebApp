@@ -1,34 +1,38 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!-- http://stackoverflow.com/questions/22824190/how-to-use-format-date-as-yyyy-mm-dd-with-jstl -->
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!--head.jsp include Goes Here -->
 <!--body.jsp include Goes Here -->
 
+<%@ page import="java.text.SimpleDateFormat"%>
+
+<%
+	String format = "(mm/dd/yyyy)";
+	SimpleDateFormat formatDate = new SimpleDateFormat(format);
+%>
 <BODY BGCOLOR="white">
-<CENTER>
-<H1>Welcome to Update Baruch Course Schedule</H1>
-<br>
+		<H1>Welcome to Update Baruch Course Schedule</H1>
+		<br>
 
-<FORM ACTION="display.jsp">
-  <label>Semester:
-	<select name="semester">
-	<option selected="selected">Semester Select</option>
-        %>
-	<option value='Spring'>Spring 2007 </option>
-			  <option value='January Intersession'>January Intersession 2007 </option>
-			  <option value='Fall'>Fall 2006 </option>
-			  <option value='Summer ALL'>Summer ALL 2006 </option>
-			  <option value='Summer00'>Summer00 2006 (06/01/2006 to 08/17/2006)</option>
-			  <option value='Summer02'>Summer02 2006 (07/10/2006 to 08/17/2006)</option>
-			  <option value='Summer01'>Summer01 2006 (06/01/2006 to 07/06/2006)</option>
-			  
+		<FORM ACTION="/18_Prince_Thomas_HW3/admin/display" method="post">
+			<label>Semester: <select name="semester">
+					<option selected="selected" disabled>Semester Select</option>
+					<c:forEach items="${semesters}" var="semester">
+						<option value="${semester.semesterId}">${semester.semesterName}
+							(<fmt:formatDate value="${semester.startDate}"
+								pattern="dd/MM/yyyy" /> to
+							<fmt:formatDate value="${semester.startDate}"
+								pattern="dd/MM/yyyy" />)
+						</option>
+					</c:forEach>
+			</select>
 
-	</select>
-  </label>&nbsp;&nbsp;
-  Start Date: 
-  <INPUT TYPE="TEXT" NAME="startDate" VALUE="">&nbsp;&nbsp;&nbsp;
-  End Date:</B>
-  <INPUT TYPE="TEXT" NAME="endDate" VALUE=""><br><br><br>
-  <INPUT TYPE="SUBMIT" value="Update Schedule"> <!-- Press this button to submit form -->
-</FORM>
-</CENTER>
 
-<!--foot.jsp include Goes Here -->
-
+			</label>&nbsp;&nbsp; Start Date: <INPUT TYPE="TEXT" NAME="startDate" VALUE="">&nbsp;&nbsp;&nbsp;
+			End Date:</B> <INPUT TYPE="TEXT" NAME="endDate" VALUE=""><br>
+			<br> <br> <INPUT TYPE="SUBMIT" value="Update Schedule">
+			<!-- Press this button to submit form -->
+		</FORM>
+	<!--foot.jsp include Goes Here -->

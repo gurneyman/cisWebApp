@@ -16,7 +16,9 @@
         http://www.springframework.org/schema/aop
         http://www.springframework.org/schema/aop/spring-aop-4.1.xsd">
 
-	<context:property-placeholder location="classpath:jdbc-school.properties" />
+	<!-- <context:property-placeholder location="classpath:jdbc-school.properties" /> -->
+	<!-- <context:property-placeholder location="classpath:jdbc-jasmine.properties" /> -->
+	<context:property-placeholder location="classpath:jdbc-home.properties" />
 	<context:component-scan base-package="com.tutorialspoint" />
 
 	<bean
@@ -41,6 +43,7 @@
 		<property name="annotatedClasses">
 			<list>
 				<value>com.tutorialspoint.domain.AdminUser</value>
+				<value>com.tutorialspoint.domain.Semester</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">

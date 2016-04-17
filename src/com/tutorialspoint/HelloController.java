@@ -2,11 +2,14 @@ package com.tutorialspoint;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.tutorialspoint.service.AdminUserService;
+import com.tutorialspoint.service.SemesterService;
 import com.tutorialspoint.domain.AdminUser;
+import com.tutorialspoint.domain.Semester;
 
 import org.springframework.ui.ModelMap;
 
@@ -15,7 +18,10 @@ import java.util.List;
 @Controller
 public class HelloController {
 	@Autowired  
-    private AdminUserService adminUserService; 
+    private AdminUserService adminUserService;
+	
+	@Autowired 
+	private SemesterService semesterService;
 
 	//@RequestMapping(method = RequestMethod.GET)
 	@RequestMapping("/hello")
@@ -35,4 +41,26 @@ public class HelloController {
 		model.addAttribute("message", "Hello Spring MVC Framework!");
 		return "test/test";
 	}
+	
+	@RequestMapping("/admin/update")
+	public String adminSchedule(ModelMap model){
+		Semester semesterForm = new Semester();
+		model.addAttribute("semesterForm", semesterForm);
+		List<Semester> semesters = semesterService.getSemesters();
+		model.addAttribute("semesters", semesters);
+		return "AdminSchReader/update";
+	}
+	
+	@RequestMapping(value="/admin/display", method = RequestMethod.POST)
+    public String processRegistration(@ModelAttribute("semesterForm") Semester semester,
+    		ModelMap model) {
+         
+        // implement your own registration logic here...
+         
+        // for testing purpose:
+        System.out.println("username: " + semester.getSemesterName());
+         
+        return "AdminSchReader/display";
+    }
+	
 }
