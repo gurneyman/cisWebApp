@@ -11,6 +11,8 @@ import javax.persistence.Table;
 
 import javax.validation.constraints.NotNull;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name = "SEMESTER_SR")
 public class Semester {
@@ -22,10 +24,12 @@ public class Semester {
 	private String semesterId;
 	
 	@NotNull
+	@DateTimeFormat(pattern="MM/dd/yyyy")
 	@Column(name = "START_DATE")
 	private Date startDate;
 	
-	@NotNull
+	@NotNull // These could possibly allow nulls since you may only want to edit one value!
+	@DateTimeFormat(pattern="MM/dd/yyyy")
 	@Column(name = "END_DATE")
 	private Date endDate;
 	

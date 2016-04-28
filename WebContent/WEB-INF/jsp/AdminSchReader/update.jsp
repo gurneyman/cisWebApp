@@ -20,7 +20,7 @@
 	<form:form action="/18_Prince_Thomas_HW3/admin/display" method="post"
 		commandName="semesterForm">
 		<form:select path="semesterId">
-			<form:option value="null" label="--- Select ---" selected="true" disabled="true" />
+			<form:option value="" label="--- Select ---" selected="true" disabled="true" />
 			<c:forEach items="${semesters}" var="semester">
 					<form:option value="${semester.semesterId}" label="${semester.semesterName}">${semester.semesterName}
 						(<fmt:formatDate value="${semester.startDate}"
@@ -30,6 +30,7 @@
 					</form:option>
 				</c:forEach>
 		</form:select>
+		<font color="red"><form:errors path="semesterId"></form:errors></font>
 		<form:input path="startDate" placeholder="mm/dd/yyyy" />
 		<form:input path="endDate" placeholder="mm/dd/yyyy"  />
 		<%-- <label>Semester: <select name="semester">

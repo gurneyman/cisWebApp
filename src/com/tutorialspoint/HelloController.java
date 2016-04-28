@@ -65,10 +65,11 @@ public class HelloController {
 		if(result.hasErrors()){
 			List<ObjectError> errorList = result.getAllErrors();
 			for(ObjectError error : errorList){
-				System.out.println(error);
+				System.out.println(error.getDefaultMessage());
 			}
 			System.out.println("Errors");
 			model.addAttribute("error", "Error!");
+			model.addAttribute("result", result);
 			return adminSchedule(model);
 		}
 		System.out.println(semester);

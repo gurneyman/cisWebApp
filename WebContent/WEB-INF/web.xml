@@ -16,6 +16,13 @@
     <param-name>contextConfigLocation</param-name>
     <param-value>/WEB-INF/CourseSearch-servlet.xml</param-value>
   </context-param>
+  <!-- http://docs.oracle.com/javaee/6/tutorial/doc/gircz.html -->
+  <context-param>
+    <param-name>
+        javax.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL
+    </param-name>
+    <param-value>true</param-value>
+</context-param>
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
