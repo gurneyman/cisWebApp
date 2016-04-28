@@ -1,5 +1,7 @@
 package com.tutorialspoint;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -12,6 +14,8 @@ import com.tutorialspoint.domain.AdminUser;
 import com.tutorialspoint.domain.Semester;
 
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 
 import java.util.List;
 
@@ -45,6 +49,8 @@ public class HelloController {
 
 	@RequestMapping("/admin/update")
 	public String adminSchedule(ModelMap model) {
+		String error = (String) model.get((String) "error");
+		System.out.println(error);
 		Semester semesterForm = new Semester();
 		model.addAttribute("semesterForm", semesterForm);
 		List<Semester> semesters = semesterService.getSemesters();
@@ -54,8 +60,17 @@ public class HelloController {
 
 	// http://stackoverflow.com/questions/17792274/spring-mvc-error-400-the-request-sent-by-the-client-was-syntactically-incorrect
 	@RequestMapping(value = "/admin/display", method = RequestMethod.POST)
-	public String processRegistration(@ModelAttribute("semesterForm") Semester semester, ModelMap model) {
+	public String processRegistration(@ModelAttribute("semesterForm") @Valid Semester semester, BindingResult result, ModelMap model) {
 		
+		if(result.hasErrors()){
+			List<ObjectError> errorList = result.getAllErrors();
+			for(ObjectError error : errorList){
+				System.out.println(error);
+			}
+			System.out.println("Errors");
+			model.addAttribute("error", "Error!");
+			return adminSchedule(model);
+		}
 		System.out.println(semester);
 		Semester updatedSemester = semesterService.getSemester(semester.getSemesterId());
 		System.out.println(updatedSemester);

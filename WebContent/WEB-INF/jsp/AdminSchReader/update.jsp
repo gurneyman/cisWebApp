@@ -16,21 +16,22 @@
 <BODY BGCOLOR="white">
 	<H1>Welcome to Update Baruch Course Schedule</H1>
 	<br>
+	<!-- Make fields required required="required" -->
 	<form:form action="/18_Prince_Thomas_HW3/admin/display" method="post"
 		commandName="semesterForm">
-		<form:select path="semesterId" required="required">
-			<form:option value="NONE" label="--- Select ---" selected="true" disabled="true" />
+		<form:select path="semesterId">
+			<form:option value="null" label="--- Select ---" selected="true" disabled="true" />
 			<c:forEach items="${semesters}" var="semester">
-						<form:option value="${semester.semesterId}" label="${semester.semesterName}">${semester.semesterName}
-							(<fmt:formatDate value="${semester.startDate}"
-								pattern="dd/MM/yyyy" /> to
-							<fmt:formatDate value="${semester.endDate}"
-								pattern="dd/MM/yyyy" />)
-						</form:option>
-					</c:forEach>
+					<form:option value="${semester.semesterId}" label="${semester.semesterName}">${semester.semesterName}
+						(<fmt:formatDate value="${semester.startDate}"
+							pattern="dd/MM/yyyy" /> to
+						<fmt:formatDate value="${semester.endDate}"
+							pattern="dd/MM/yyyy" />)
+					</form:option>
+				</c:forEach>
 		</form:select>
-		<form:input path="startDate" placeholder="mm/dd/yyyy" required="required" />
-		<form:input path="endDate" placeholder="mm/dd/yyyy" required="required" />
+		<form:input path="startDate" placeholder="mm/dd/yyyy" />
+		<form:input path="endDate" placeholder="mm/dd/yyyy"  />
 		<%-- <label>Semester: <select name="semester">
 					<option selected="selected" disabled>Semester Select</option>
 					<c:forEach items="${semesters}" var="semester">

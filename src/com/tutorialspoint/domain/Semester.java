@@ -9,18 +9,23 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import javax.validation.constraints.NotNull;
+
 @Entity
 @Table(name = "SEMESTER_SR")
 public class Semester {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@NotNull
 	@Column(name = "SEMESTER_ID")
 	private String semesterId;
 	
+	@NotNull
 	@Column(name = "START_DATE")
 	private Date startDate;
 	
+	@NotNull
 	@Column(name = "END_DATE")
 	private Date endDate;
 	
