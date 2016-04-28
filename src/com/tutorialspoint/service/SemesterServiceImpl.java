@@ -28,4 +28,15 @@ public class SemesterServiceImpl implements SemesterService{
 		return semesterDao.getSemesters();
 	}
 
+	@Override
+	public Semester getSemester(String id) {
+		return semesterDao.getSemester(id);
+	}
+
+	@Override
+	public void updateSemester(Semester semester) {
+		// TODO Auto-generated method stub
+		semesterDao.updateSemester(semester);
+	}
+
 }

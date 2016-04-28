@@ -20,14 +20,13 @@ public class AdminUserServiceImpl implements AdminUserService {
   
     @Override  
     public List<AdminUser> getUser() {  
-        return AdminUserDao.getUser();  
+        return AdminUserDao.getUsers();  
   
     }
 
 
 	@Override
 	public void addUser(AdminUser user) {
-		System.out.println("In AUServe.addUser: " + user.getUserName());
 		AdminUserDao.saveUser(user); 
 		
 	}  

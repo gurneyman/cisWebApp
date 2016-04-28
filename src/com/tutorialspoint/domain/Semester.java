@@ -31,6 +31,14 @@ public class Semester {
 	private String semester;
 	
 	public Semester() {}
+	
+	
+	@Override
+	public String toString() {
+		return "Semester [semesterId=" + semesterId + ", startDate=" + startDate + ", endDate=" + endDate
+				+ ", semesterName=" + semesterName + ", semester=" + semester + "]";
+	}
+
 
 	public String getSemesterId() {
 		return semesterId;

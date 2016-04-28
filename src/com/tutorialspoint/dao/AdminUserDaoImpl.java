@@ -26,7 +26,7 @@ public class AdminUserDaoImpl implements AdminUserDao {
   
     @Override
     @Transactional
-    public List<AdminUser> getUser() {  
+    public List<AdminUser> getUsers() {  
   
         @SuppressWarnings("unchecked")  
         List<AdminUser> userlist = sessionfactory.getCurrentSession()  

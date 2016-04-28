@@ -17,13 +17,13 @@ import java.util.List;
 
 @Controller
 public class HelloController {
-	@Autowired  
-    private AdminUserService adminUserService;
-	
-	@Autowired 
+	@Autowired
+	private AdminUserService adminUserService;
+
+	@Autowired
 	private SemesterService semesterService;
 
-	//@RequestMapping(method = RequestMethod.GET)
+	// @RequestMapping(method = RequestMethod.GET)
 	@RequestMapping("/hello")
 	public String printHello(ModelMap model) {
 		List<AdminUser> adminUsers = adminUserService.getUser();
@@ -31,36 +31,44 @@ public class HelloController {
 		model.addAttribute("message", "Hello Spring MVC Framework!");
 		return "hello";
 	}
+
 	@RequestMapping("/test")
 	public String printTest(ModelMap model) {
-		//List<AdminUser> adminUsers = adminUserRepository.getUserList();
-		//model.addAttribute("adminUsers", adminUsers);
-		AdminUser newUser = new AdminUser("1", "1","1", "tommy", "passwerd");
+		// List<AdminUser> adminUsers = adminUserRepository.getUserList();
+		// model.addAttribute("adminUsers", adminUsers);
+		AdminUser newUser = new AdminUser("1", "1", "1", "tommy", "passwerd");
 		System.out.println("Trying to add: " + newUser.getUserName());
 		adminUserService.addUser(newUser);
 		model.addAttribute("message", "Hello Spring MVC Framework!");
 		return "test/test";
 	}
-	
+
 	@RequestMapping("/admin/update")
-	public String adminSchedule(ModelMap model){
+	public String adminSchedule(ModelMap model) {
 		Semester semesterForm = new Semester();
 		model.addAttribute("semesterForm", semesterForm);
 		List<Semester> semesters = semesterService.getSemesters();
 		model.addAttribute("semesters", semesters);
 		return "AdminSchReader/update";
 	}
-	
-	@RequestMapping(value="/admin/display", method = RequestMethod.POST)
-    public String processRegistration(@ModelAttribute("semesterForm") Semester semester,
-    		ModelMap model) {
-         
-        // implement your own registration logic here...
-         
-        // for testing purpose:
-        System.out.println("username: " + semester.getSemesterName());
-         
-        return "AdminSchReader/display";
-    }
-	
+
+	// http://stackoverflow.com/questions/17792274/spring-mvc-error-400-the-request-sent-by-the-client-was-syntactically-incorrect
+	@RequestMapping(value = "/admin/display", method = RequestMethod.POST)
+	public String processRegistration(@ModelAttribute("semesterForm") Semester semester, ModelMap model) {
+		
+		System.out.println(semester);
+		Semester updatedSemester = semesterService.getSemester(semester.getSemesterId());
+		System.out.println(updatedSemester);
+
+		model.addAttribute("updatedSemester", updatedSemester);
+		
+		// Update semester
+		updatedSemester.setStartDate(semester.getStartDate());
+		updatedSemester.setEndDate(semester.getEndDate());
+		semesterService.updateSemester(updatedSemester);
+		System.out.println(updatedSemester);
+
+		return "AdminSchReader/display";
+	}
+
 }
