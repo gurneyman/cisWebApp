@@ -2,8 +2,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<!--head.jsp include Goes Here -->
+<%@ include file="../head.jsp" %>
 <!--body.jsp include Goes Here -->
+<%@ include file="../body.jsp" %>
 <center>
 	<h1>You have successfully updated the semester schedule</h1>
 </center>
@@ -30,5 +31,5 @@
 
 
 <!--foot.jsp include Goes Here -->
-
+<%@ include file="../foot.jsp" %>
 

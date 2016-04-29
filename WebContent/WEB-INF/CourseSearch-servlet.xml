@@ -16,9 +16,8 @@
 
 	<!-- <context:property-placeholder location="classpath:jdbc-school.properties" 
 		/> -->
-	<!-- <context:property-placeholder location="classpath:jdbc-jasmine.properties" 
-		/> -->
-	<context:property-placeholder location="classpath:jdbc-home.properties" />
+	<context:property-placeholder location="classpath:jdbc-jasmine.properties" />
+<!-- 	<context:property-placeholder location="classpath:jdbc-home.properties" /> -->
 	<context:component-scan base-package="com.tutorialspoint" />
 
 	<bean
@@ -33,8 +32,6 @@
 		<property name="url" value="${database.url}" />
 		<property name="username" value="${database.user}" />
 		<property name="password" value="${database.password}" />
-
-
 	</bean>
 
 	<bean id="sessionFactory"
@@ -66,6 +63,10 @@
 	<mvc:resources mapping="/resources/**" location="/resources/"
 		cache-period="31556926" />
 	<mvc:annotation-driven />
+	
+	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basename" value="/WEB-INF/conf/messages" />
+   </bean>
 
 
 

@@ -3,7 +3,7 @@
 <!-- /main -->
 </div>
 <!-- /wrapper -->
-<script type="text/javascript" src="validate.min.js"></script>
+<!-- <script type="text/javascript" src="validate.min.js"></script>
 <script>
   var validator = new FormValidator('scheduleSearch', [{
       name: 'number',
@@ -85,7 +85,7 @@ function validateNumber(value) {
 
       
   }
-</script>
+</script> -->
 
 
 <!-- <script>

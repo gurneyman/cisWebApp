@@ -19,7 +19,7 @@ public class Semester {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@NotNull
+	@NotNull(message = "Please enter your email addresss.")
 	@Column(name = "SEMESTER_ID")
 	private String semesterId;
 	

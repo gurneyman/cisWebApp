@@ -5,6 +5,9 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!--head.jsp include Goes Here -->
 <!--body.jsp include Goes Here -->
+<%@ include file="../head.jsp" %>
+<!--body.jsp include Goes Here -->
+<%@ include file="../body.jsp" %>
 
 <%@ page import="java.text.SimpleDateFormat"%>
 
@@ -30,9 +33,11 @@
 					</form:option>
 				</c:forEach>
 		</form:select>
-		<font color="red"><form:errors path="semesterId"></form:errors></font>
+		<font color="red"><form:errors path="semesterId"></form:errors></font><br>
 		<form:input path="startDate" placeholder="mm/dd/yyyy" />
+		<font color="red"><form:errors path="startDate"></form:errors></font><br>
 		<form:input path="endDate" placeholder="mm/dd/yyyy"  />
+		<font color="red"><form:errors path="endDate"></form:errors></font><br>
 		<%-- <label>Semester: <select name="semester">
 					<option selected="selected" disabled>Semester Select</option>
 					<c:forEach items="${semesters}" var="semester">
@@ -54,3 +59,4 @@
 		<!-- Press this button to submit form -->
 	</form:form>
 	<!--foot.jsp include Goes Here -->
+	<%@ include file="../foot.jsp" %>

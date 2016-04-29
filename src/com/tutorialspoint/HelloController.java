@@ -16,6 +16,7 @@ import com.tutorialspoint.domain.Semester;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
 
@@ -63,14 +64,9 @@ public class HelloController {
 	public String processRegistration(@ModelAttribute("semesterForm") @Valid Semester semester, BindingResult result, ModelMap model) {
 		
 		if(result.hasErrors()){
-			List<ObjectError> errorList = result.getAllErrors();
-			for(ObjectError error : errorList){
-				System.out.println(error.getDefaultMessage());
-			}
-			System.out.println("Errors");
-			model.addAttribute("error", "Error!");
-			model.addAttribute("result", result);
-			return adminSchedule(model);
+			List<Semester> semesters = semesterService.getSemesters();
+			model.addAttribute("semesters", semesters);
+			return "AdminSchReader/update";
 		}
 		System.out.println(semester);
 		Semester updatedSemester = semesterService.getSemester(semester.getSemesterId());
