@@ -1,7 +1,8 @@
-package com.tutorialspoint.dao;
+package com.tomprince.dao;
 
 import java.util.List;
-import com.tutorialspoint.domain.Semester;
+
+import com.tomprince.domain.Semester;
 
 public interface SemesterDao {
 	public void saveUser(Semester semester);

@@ -1,12 +1,14 @@
-package com.tutorialspoint.dao;
+package com.tomprince.dao;
 
-import java.util.List;  
+import java.util.List;
+
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;  
 import org.springframework.beans.factory.annotation.Autowired;  
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.tutorialspoint.domain.AdminUser;  
+import com.tomprince.domain.AdminUser;  
   
   
 @Repository("AdminUserDao")  
@@ -33,6 +35,13 @@ public class AdminUserDaoImpl implements AdminUserDao {
                 .createCriteria(AdminUser.class).list();  
         return userlist;  
   
-    }  
+    }
+
+
+	@Override
+	@Transactional
+	public AdminUser getUserByUserName(String username) {
+		return (AdminUser) sessionfactory.getCurrentSession().get(AdminUser.class, username);
+	}  
   
 }  

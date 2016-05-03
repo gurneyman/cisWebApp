@@ -1,8 +1,9 @@
-package com.tutorialspoint.service;
+package com.tomprince.service;
   
 
-import java.util.List;  
-import com.tutorialspoint.domain.Semester;  
+import java.util.List;
+
+import com.tomprince.domain.Semester;  
 
 public interface SemesterService {  
     public void addUser(Semester semster);  

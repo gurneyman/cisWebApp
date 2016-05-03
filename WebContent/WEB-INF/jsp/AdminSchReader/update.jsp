@@ -1,7 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- http://stackoverflow.com/questions/22824190/how-to-use-format-date-as-yyyy-mm-dd-with-jstl -->
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!--head.jsp include Goes Here -->
 <!--body.jsp include Goes Here -->
@@ -10,6 +9,7 @@
 <%@ include file="../body.jsp" %>
 
 <%@ page import="java.text.SimpleDateFormat"%>
+<%@page session="true"%>
 
 <%
 	// http://www.tutorialspoint.com/jsp/jstl_format_formatdate_tag.htm
@@ -17,11 +17,15 @@
 	SimpleDateFormat formatDate = new SimpleDateFormat(format);
 %>
 <BODY BGCOLOR="white">
+	<h3>Welcome : ${pageContext.request.userPrincipal.name}</h3>
 	<H1>Welcome to Update Baruch Course Schedule</H1>
 	<br>
 	<!-- Make fields required required="required" -->
 	<form:form action="/18_Prince_Thomas_HW3/admin/display" method="post"
 		commandName="semesterForm">
+		<font color="red"><form:errors path="semesterId"></form:errors></font><br>
+		<font color="red"><form:errors path="startDate"></form:errors></font><br>
+		<font color="red"><form:errors path="endDate"></form:errors></font><br>
 		<form:select path="semesterId">
 			<form:option value="" label="--- Select ---" selected="true" disabled="true" />
 			<c:forEach items="${semesters}" var="semester">
@@ -33,11 +37,11 @@
 					</form:option>
 				</c:forEach>
 		</form:select>
-		<font color="red"><form:errors path="semesterId"></form:errors></font><br>
+		
 		<form:input path="startDate" placeholder="mm/dd/yyyy" />
-		<font color="red"><form:errors path="startDate"></form:errors></font><br>
+		
 		<form:input path="endDate" placeholder="mm/dd/yyyy"  />
-		<font color="red"><form:errors path="endDate"></form:errors></font><br>
+		
 		<%-- <label>Semester: <select name="semester">
 					<option selected="selected" disabled>Semester Select</option>
 					<c:forEach items="${semesters}" var="semester">

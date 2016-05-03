@@ -5,4 +5,4 @@
  * @author thomas
  *
  */
-package com.tutorialspoint.domain;
+package com.tomprince.service;

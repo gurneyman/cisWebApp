@@ -1,4 +1,4 @@
-package com.tutorialspoint.data;
+package com.tomprince.data;
 
 import java.util.Iterator;
 import java.util.List;
@@ -16,7 +16,7 @@ import org.hibernate.metamodel.MetadataSources;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.tutorialspoint.domain.AdminUser;
+import com.tomprince.domain.AdminUser;
 
 @Component
 public class AdminUserRepository {

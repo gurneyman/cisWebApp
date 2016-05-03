@@ -1,4 +1,4 @@
-package com.tutorialspoint.service;
+package com.tomprince.service;
 
 import java.util.List;
 
@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.tutorialspoint.dao.SemesterDao;
-import com.tutorialspoint.domain.Semester;
+import com.tomprince.dao.SemesterDao;
+import com.tomprince.domain.Semester;
 
 @Service
 @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)  

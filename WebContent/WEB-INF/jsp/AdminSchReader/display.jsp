@@ -11,7 +11,7 @@
 
 
 <p align="left">
-	<b> <a href="logout.jsp"><font size="5">Log out</font></a>
+	<b> <a href="${pageContext.request.contextPath}/logout"><font size="5">Log out</font></a>
 	</b>&nbsp;<br> <br>
 </p>
 <center>

@@ -1,4 +1,4 @@
-package com.tutorialspoint.domain;
+package com.tomprince.domain;
 
 import java.util.Date;
 
@@ -19,7 +19,7 @@ public class Semester {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@NotNull(message = "Please enter your email addresss.")
+	@NotNull
 	@Column(name = "SEMESTER_ID")
 	private String semesterId;
 	

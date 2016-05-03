@@ -1,4 +1,4 @@
-package com.tutorialspoint.dao;
+package com.tomprince.dao;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.tutorialspoint.domain.Semester;
+import com.tomprince.domain.Semester;
 
 @Repository("SemesterDao")
 public class SemesterDaoImpl implements SemesterDao  {
