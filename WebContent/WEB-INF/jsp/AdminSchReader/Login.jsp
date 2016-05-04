@@ -32,6 +32,8 @@
             <td><input name="submit" type="submit" value="submit" /></td>
          </tr>
       </table>
+      <!-- http://stackoverflow.com/questions/21128058/invalid-csrf-token-null-was-found-on-the-request-parameter-csrf-or-header -->
+      <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
   </form>
 <!-- <FORM ACTION="update.jsp">
   User  ID: 

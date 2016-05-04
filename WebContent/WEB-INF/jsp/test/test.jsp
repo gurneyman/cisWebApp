@@ -48,7 +48,7 @@
 			        $scope.helloTo = {};
 			        $scope.helloTo.title = "World, AngularJS";
 			        
-			        $http.get('${appRoot}/user').then(function successCallback(response) {
+			        $http.get('${appRoot}/users').then(function successCallback(response) {
 			            // this callback will be called asynchronously
 			            // when the response is available
 			        	$scope.helloTo.data = response.data;

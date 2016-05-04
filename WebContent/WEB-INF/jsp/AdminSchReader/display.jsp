@@ -7,6 +7,7 @@
 <%@ include file="../body.jsp" %>
 <center>
 	<h1>You have successfully updated the semester schedule</h1>
+	<h3>Logged in as: ${pageContext.request.userPrincipal.name}</h3>
 </center>
 
 

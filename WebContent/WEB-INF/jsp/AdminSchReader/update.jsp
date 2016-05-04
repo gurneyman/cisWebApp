@@ -16,16 +16,28 @@
 	String format = "(mm/dd/yyyy)";
 	SimpleDateFormat formatDate = new SimpleDateFormat(format);
 %>
+<!-- 
+	Hacking in a date picker: https://jqueryui.com/datepicker/
+	In production this would be minified and put in external files 
+-->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script>
+$(function() {
+    $( ".date-picker" ).datepicker();
+  });
+</script>
 <BODY BGCOLOR="white">
-	<h3>Welcome : ${pageContext.request.userPrincipal.name}</h3>
 	<H1>Welcome to Update Baruch Course Schedule</H1>
+	<h3>Logged in as: ${pageContext.request.userPrincipal.name}</h3>
 	<br>
 	<!-- Make fields required required="required" -->
 	<form:form action="/18_Prince_Thomas_HW3/admin/display" method="post"
 		commandName="semesterForm">
-		<font color="red"><form:errors path="semesterId"></form:errors></font><br>
-		<font color="red"><form:errors path="startDate"></form:errors></font><br>
-		<font color="red"><form:errors path="endDate"></form:errors></font><br>
+		
+		
+		<label for="semesterId">Semester</label> <font color="red"><form:errors path="semesterId"></form:errors></font><br>
 		<form:select path="semesterId">
 			<form:option value="" label="--- Select ---" selected="true" disabled="true" />
 			<c:forEach items="${semesters}" var="semester">
@@ -37,10 +49,12 @@
 					</form:option>
 				</c:forEach>
 		</form:select>
-		
-		<form:input path="startDate" placeholder="mm/dd/yyyy" />
-		
-		<form:input path="endDate" placeholder="mm/dd/yyyy"  />
+		<br/><br/>
+		<label for="startDate">Start Date</label> <font color="red"> <form:errors path="startDate"></form:errors></font><br>
+		<form:input path="startDate" placeholder="mm/dd/yyyy" class="date-picker"/>
+		<br/><br/>
+		<label for="endDate">End Date</label> <font color="red"><form:errors path="endDate"></form:errors></font><br>
+		<form:input path="endDate" placeholder="mm/dd/yyyy"  class="date-picker"/>
 		
 		<%-- <label>Semester: <select name="semester">
 					<option selected="selected" disabled>Semester Select</option>

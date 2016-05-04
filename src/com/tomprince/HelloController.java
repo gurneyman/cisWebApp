@@ -1,11 +1,12 @@
 /*
 Student Name:  Tom Prince  
-Assignment # 3    
+Assignment # 4    
  Class: 4160
 Features Included:
+	Session, login, user validation,
 	Form Validation, Displaying all semesters with current dates, update semester dates
 
-Advance Feature(if Any): Spring/Hibernate
+Advance Feature(if Any): Spring/Hibernate, Spring Security and CSRF protection
  
 
 References(if Any):
@@ -47,6 +48,8 @@ http://www.concretepage.com/spring/spring-mvc/spring-mvc-form-validation-using-a
 http://docs.oracle.com/javaee/6/tutorial/doc/gircz.html
 http://stackoverflow.com/questions/24053139/spring-mvc-form-validation-date-field
 
+
+	This file handles all of my routing. It should be broken up into controllers with unique responsibilities (login, admin, courseSearch)
 */
 
 package com.tomprince;
@@ -68,8 +71,6 @@ import com.tomprince.service.SemesterService;
 
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
-import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
 
@@ -95,8 +96,6 @@ public class HelloController {
 	// Another test route that adds a new user to database.
 	@RequestMapping("/test")
 	public String printTest(ModelMap model) {
-		// List<AdminUser> adminUsers = adminUserRepository.getUserList();
-		// model.addAttribute("adminUsers", adminUsers);
 		AdminUser newUser = new AdminUser("1", "1", "1", "tommy", "passwerd");
 		System.out.println("Trying to add: " + newUser.getUserName());
 		adminUserService.addUser(newUser);
