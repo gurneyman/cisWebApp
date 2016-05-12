@@ -16,11 +16,10 @@
         http://www.springframework.org/schema/security
 		http://www.springframework.org/schema/security/spring-security-4.0.xsd">
 
-	<!-- <context:property-placeholder location="classpath:jdbc-school.properties" 
-		/> -->
+	<context:property-placeholder location="classpath:jdbc-school.properties"/>
 	<!-- <context:property-placeholder location="classpath:jdbc-jasmine.properties" /> -->
-	<context:property-placeholder location="classpath:jdbc-home.properties" />
-	<context:component-scan base-package="com.tomprince" />
+	<!-- <context:property-placeholder location="classpath:jdbc-home.properties" /> -->
+	<context:component-scan base-package="com.tomprince" /><!--  -->
 
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">

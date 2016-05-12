@@ -33,7 +33,7 @@ $(function() {
 	<h3>Logged in as: ${pageContext.request.userPrincipal.name}</h3>
 	<br>
 	<!-- Make fields required required="required" -->
-	<form:form action="/18_Prince_Thomas_HW3/admin/display" method="post"
+	<form:form action="/18_Prince_Thomas_HW4/admin/display" method="post"
 		commandName="semesterForm">
 		
 		

@@ -56,6 +56,7 @@ package com.tomprince;
 
 import java.security.Principal;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,6 +64,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.tomprince.domain.AdminUser;
 import com.tomprince.domain.Semester;
@@ -92,6 +94,13 @@ public class HelloController {
 		model.addAttribute("message", "Hello Spring MVC Framework!");
 		return "hello";
 	}
+	@RequestMapping("/hello2")
+	public String printHello2(ModelMap model) {
+		List<AdminUser> adminUsers = adminUserService.getUser();
+		model.addAttribute("adminUsers", adminUsers);
+		model.addAttribute("message", "Hello Spring MVC Framework!");
+		return "hello";
+	}
 
 	// Another test route that adds a new user to database.
 	@RequestMapping("/test")
@@ -104,7 +113,7 @@ public class HelloController {
 	}
 
 	// Fulfills the update.jsp requirement for HW4
-	@RequestMapping("/login")
+	@RequestMapping({"/", "/login"})
 	public String login(ModelMap model) {
 		return "AdminSchReader/Login";
 	}
@@ -119,9 +128,9 @@ public class HelloController {
 	@RequestMapping("/admin/update")
 	public String adminSchedule(ModelMap model, Principal principal) {
 		// Create object to hold semester info from form
-		Semester semesterForm = new Semester();
-		// Add it to the model
-		model.addAttribute("semesterForm", semesterForm);
+		if (!model.containsAttribute("semesterForm")) {
+	        model.addAttribute("semesterForm", new Semester());
+	    }
 		// Retrieve all semesters from db
 		List<Semester> semesters = semesterService.getSemesters();
 		// Add them to the model
@@ -135,25 +144,28 @@ public class HelloController {
 	// Fulfills the display.jsp requirement for HW3
 	// http://stackoverflow.com/questions/17792274/spring-mvc-error-400-the-request-sent-by-the-client-was-syntactically-incorrect
 	@RequestMapping(value = "/admin/display", method = RequestMethod.POST)
-	public String processRegistration(@ModelAttribute("semesterForm") @Valid Semester semester, BindingResult result,
-			ModelMap model) {
+	public String processRegistration(@ModelAttribute("semesterForm") @Valid Semester semesterForm, BindingResult result,
+			ModelMap model, RedirectAttributes attr, HttpSession session) {
 
 		// Does the form have errors? Route user back to form with error
 		// messages
 		if (result.hasErrors()) {
 			// Get the semesters again and add them to the model. Should be a
 			// better way to do this
-			List<Semester> semesters = semesterService.getSemesters();
-			model.addAttribute("semesters", semesters);
-			return "AdminSchReader/update";
+//			List<Semester> semesters = semesterService.getSemesters();
+//			model.addAttribute("semesters", semesters);
+//			return "AdminSchReader/update";
+			attr.addFlashAttribute("org.springframework.validation.BindingResult.result", result);
+		    attr.addFlashAttribute("semesterForm", semesterForm);
+		    return "redirect:/admin/update";
 		}
 		// Get the record the user wishes to update and add it to the model
-		Semester updatedSemester = semesterService.getSemester(semester.getSemesterId());
+		Semester updatedSemester = semesterService.getSemester(semesterForm.getSemesterId());
 		model.addAttribute("updatedSemester", updatedSemester);
 
 		// Update semester and save it to the db
-		updatedSemester.setStartDate(semester.getStartDate());
-		updatedSemester.setEndDate(semester.getEndDate());
+		updatedSemester.setStartDate(semesterForm.getStartDate());
+		updatedSemester.setEndDate(semesterForm.getEndDate());
 		semesterService.updateSemester(updatedSemester);
 
 		// Send the user to the success page.

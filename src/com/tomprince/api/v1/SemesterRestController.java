@@ -48,47 +48,33 @@ http://docs.oracle.com/javaee/6/tutorial/doc/gircz.html
 http://stackoverflow.com/questions/24053139/spring-mvc-form-validation-date-field
 
 */
-package com.tomprince;
+package com.tomprince.api.v1;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.annotation.JsonRawValue;
-import com.fasterxml.jackson.annotation.JsonValue;
-import com.tomprince.domain.AdminUser;
 import com.tomprince.domain.Semester;
-import com.tomprince.service.AdminUserService;
 import com.tomprince.service.SemesterService;
 
-@RestController	
-public class TestRestController {
-	@Autowired  
-    private AdminUserService adminUserService; 
-	
+@RestController
+public class SemesterRestController {
+
 	@Autowired
 	private SemesterService semesterService;
-	
-	@RequestMapping(value = "user", method = RequestMethod.GET, produces="application/json")
-	public AdminUser getUser(){
-		return new AdminUser("1", "1","1", "tommy", "passwerd");
+
+	@RequestMapping(value = API.ROUTE + "semesters", method = RequestMethod.GET, produces = "application/json")
+	public List<Semester> getSemesters() {
+		return semesterService.getSemesters();
 	}
 	
-	
-	// Just testing this. Obviously you'd never send passwords back as json
-	@RequestMapping(value = "users", method = RequestMethod.GET, produces="application/json")
-	public List<AdminUser> getUsers(){
-		return adminUserService.getUser();
+	@RequestMapping(value = API.ROUTE + "semester/{id}", method = RequestMethod.GET, produces = "application/json")
+	public Semester getSemester(@PathVariable(value="id") String id) {
+		return semesterService.getSemester(id);
 	}
-	
-	// Just testing this. Obviously you'd never send passwords back as json
-		@RequestMapping(value = "semesters", method = RequestMethod.GET, produces="application/json")
-		public List<Semester> getSemesters(){
-			return semesterService.getSemesters();
-		}
 
 }
