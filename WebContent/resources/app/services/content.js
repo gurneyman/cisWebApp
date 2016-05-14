@@ -7,29 +7,47 @@
     Content.$inject = ['$http', '$q'];
 
     function Content($http, $q) {
+        var APIROUTE = "./api/v1/"
         var content = {
-          getSemesters: getSemesters
+            data: {},
+            getCourse: getCourse,
+            getCourses: getCourses,
+            getSemesters: getSemesters
         };
-        content.data = {};
+        return content;
 
-        //content.getSemesters = getSemesters;
+        function getCourses() {
+            return getData(APIROUTE + "courses", "getCourses");
+        }
+        function getCourse(id) {
+            return getData(APIROUTE + "course/" + id, "getCourse:" + id);
+        }
 
         function getSemesters() {
-            var cacheKey = "getSemesters";
-            var deferred = $q.defer();
+            return getData(APIROUTE + "semesters", "getSemesters");
+        }
 
+
+        // Generic api call function
+        // Checks "cache" for data in case we've already made a particlular call
+        // If it isn't there, it gets it from the server, stores it in the caches
+        // Either way, it returns the data
+        function getData(route, cacheKey) {
+            var deferred = $q.defer();
             // If we don't have the data already, retrieve it
             if (!content.data.hasOwnProperty(cacheKey)) {
-                $http.get('./api/v1/semesters').then(function(response) {
-                    deferred.resolve(response.data);
-                });
+                $http.get(route).then(handler);
                 content.data[cacheKey] = deferred.promise;
             }
             // Either way, return promise with data
             return $q.when(content.data[cacheKey]);
-        };
 
-        return content;
+            function handler(response) {
+                deferred.resolve(response.data);
+            }
+        }
+
+        
     }
 
 
