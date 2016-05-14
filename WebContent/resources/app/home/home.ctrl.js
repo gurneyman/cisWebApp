@@ -4,9 +4,11 @@
         .module('courseSearch')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['content'];
+    HomeController.$inject = ['$scope', 'content'];
 
-    function HomeController(content) {
-        content.semester();
+    function HomeController($scope, content) {
+        content.getSemesters().then(function(data){
+          $scope.semesters = data;
+        });
     }
 })();
