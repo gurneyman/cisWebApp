@@ -20,8 +20,20 @@ function getStates() {
         },{
             state: 'course_search',
             config: {
-                templateUrl: 'resources/app/avengers/avengers.html',
+                templateUrl: 'resources/app/course/search.html',
                 url: '/course-search'
+            }
+        },{
+            state: 'course_results',
+            config: {
+                templateUrl: 'resources/app/course/results.html',
+                url: '/course-results'
+            }
+        },{
+            state: 'course_details',
+            config: {
+                templateUrl: 'resources/app/course/details.html',
+                url: '/course-details'
             }
         }
     ];

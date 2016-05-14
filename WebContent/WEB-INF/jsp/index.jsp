@@ -43,8 +43,7 @@
 <base href="/18_Prince_Thomas_HW4/" />
 <div ng-app="courseSearch">
 	<a ui-sref="course_search">Search</a>
-	<!-- <a ui-sref="login">Login</a> -->
-	<a href="./login" target="_self">Login</a>
+	<a href="./admin/update" target="_self">Admin</a>
 	<div ui-view></div>
 </div>
 
@@ -57,6 +56,7 @@
 <script src="resources/app/app.js"></script>
 <script src="resources/app/config.js"></script>
 <script src="resources/app/config.route.js"></script>
+
 <!--foot.jsp include Goes Here -->
 <%@ include file="./foot.jsp"%>
 <!-- </body>
