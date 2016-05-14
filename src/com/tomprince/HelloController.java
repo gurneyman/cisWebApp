@@ -94,12 +94,9 @@ public class HelloController {
 		model.addAttribute("message", "Hello Spring MVC Framework!");
 		return "hello";
 	}
-	@RequestMapping("/hello2")
-	public String printHello2(ModelMap model) {
-		List<AdminUser> adminUsers = adminUserService.getUser();
-		model.addAttribute("adminUsers", adminUsers);
-		model.addAttribute("message", "Hello Spring MVC Framework!");
-		return "hello";
+	@RequestMapping({"/", "/course-search"})
+	public String home(ModelMap model) {
+		return "index";
 	}
 
 	// Another test route that adds a new user to database.
@@ -113,7 +110,7 @@ public class HelloController {
 	}
 
 	// Fulfills the update.jsp requirement for HW4
-	@RequestMapping({"/", "/login"})
+	@RequestMapping({"/login"})
 	public String login(ModelMap model) {
 		return "AdminSchReader/Login";
 	}
@@ -152,12 +149,9 @@ public class HelloController {
 		if (result.hasErrors()) {
 			// Get the semesters again and add them to the model. Should be a
 			// better way to do this
-//			List<Semester> semesters = semesterService.getSemesters();
-//			model.addAttribute("semesters", semesters);
-//			return "AdminSchReader/update";
-			attr.addFlashAttribute("org.springframework.validation.BindingResult.result", result);
-		    attr.addFlashAttribute("semesterForm", semesterForm);
-		    return "redirect:/admin/update";
+			List<Semester> semesters = semesterService.getSemesters();
+			model.addAttribute("semesters", semesters);
+			return "AdminSchReader/update";
 		}
 		// Get the record the user wishes to update and add it to the model
 		Semester updatedSemester = semesterService.getSemester(semesterForm.getSemesterId());
