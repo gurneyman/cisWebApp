@@ -40,7 +40,7 @@
 <link href="resources/content/toastr.css" rel="stylesheet" />
 </head>
 <body>--%>
-<base href="/18_Prince_Thomas_HW4/" />
+
 <div ng-app="courseSearch">
 	<a ui-sref="course_search">Search</a>
 	<a href="./admin/update" target="_self">Admin</a>
@@ -56,6 +56,13 @@
 <script src="resources/app/app.js"></script>
 <script src="resources/app/config.js"></script>
 <script src="resources/app/config.route.js"></script>
+
+<!-- Services -->
+<script src="resources/app/services/content.js"></script>
+
+<!-- Controllers -->
+<script src="resources/app/home/home.ctrl.js"></script>
+</div>
 
 <!--foot.jsp include Goes Here -->
 <%@ include file="./foot.jsp"%>

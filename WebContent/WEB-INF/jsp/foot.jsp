@@ -1,9 +1,9 @@
 <!--FOOT Include Begins -->
-</div>
 <!-- /main -->
 </div>
 <!-- /wrapper -->
-<!-- <script type="text/javascript" src="validate.min.js"></script>
+
+<script src="resources/scripts/validate.min.js"></script>
 <script>
   var validator = new FormValidator('scheduleSearch', [{
       name: 'number',
@@ -85,76 +85,76 @@ function validateNumber(value) {
 
       
   }
-</script> -->
+</script>
 
 
-<!-- <script>
-  // function validate()
-  //     {
-  //       var mainErrMsgElem = document.getElementById('main-error-msg');
-  //       setElemText(mainErrMsgElem, ""); // Reset error message
+<script>
+  function validate()
+       {
+         var mainErrMsgElem = document.getElementById('main-error-msg');
+         setElemText(mainErrMsgElem, ""); // Reset error message
 
-  //       var isValid = false;
+         var isValid = false;
 
 
-  //       // Validate number
-  //       isValid = validateNumber();
+         // Validate number
+         isValid = validateNumber();
 
-  //       // Validate instructor
-  //       isValid = validateInstructor();
+         // Validate instructor
+         isValid = validateInstructor();
         
-  //       if(!isValid){
-  //         setElemText(mainErrMsgElem, "Please correct errors below.");
-  //       }
-  //       return isValid;
-  //     }
+         if(!isValid){
+           setElemText(mainErrMsgElem, "Please correct errors below.");
+         }
+         return isValid;
+       }
   
-  // function validateNumber() {
+/*    function validateNumber() {
       
-  //     var errorMsgElem = document.getElementById('number-error-msg');
-  //     setElemText(errorMsgElem, ""); // Reset error message
+       var errorMsgElem = document.getElementById('number-error-msg');
+       setElemText(errorMsgElem, ""); // Reset error message
 
-  //     // Match 4 digits only
-  //     var validNumberRegEx1 = new RegExp('[\\d]{4}');
-  //     // Match 4 digits and one char
-  //     var validNumberRegEx2 = new RegExp('[\\d]{4}[\\w]', 'i');
+       // Match 4 digits only
+       var validNumberRegEx1 = new RegExp('[\\d]{4}');
+       // Match 4 digits and one char
+       var validNumberRegEx2 = new RegExp('[\\d]{4}[\\w]', 'i');
 
-  //     var courseNumber = document.forms["scheduleSearch"]["number"];
+       var courseNumber = document.forms["scheduleSearch"]["number"];
       
-  //     // Not 4 or 5 chars - Set error to "Course number must be 4 digits or 4 digits and 1 letter."
-  //     if(
-  //         // Don't check if it's empty
-  //         courseNumber.value.length <== 0 ||
-  //         // Course number must be at least 4 digits long
-  //         courseNumber.value.length < 4 ||
-  //         // the first 4 chars must be digits
-  //         courseNumber.value.length === 4 && !validNumberRegEx1.test(courseNumber.value) ||
-  //         // If 5 chars, it must be 4 digits and then a letter
-  //         courseNumber.value.length === 5 && !validNumberRegEx2.test(courseNumber.value)
-  //       ) {
-  //       setElemText(errorMsgElem, "Course Number must be 4 numbers or 4 numbers and 1 letter. Ex: 4444 or 4444A");
-  //       courseNumber.focus(); 
-  //       return false;
-  //     }
-  //     else {
-  //       console.log("FORM OK");
-  //       return true;
-  //     }
-  // }
+       // Not 4 or 5 chars - Set error to "Course number must be 4 digits or 4 digits and 1 letter."
+       if(
+           // Don't check if it's empty
+           courseNumber.value.length <= 0 ||
+           // Course number must be at least 4 digits long
+           courseNumber.value.length < 4 ||
+           // the first 4 chars must be digits
+           courseNumber.value.length === 4 && !validNumberRegEx1.test(courseNumber.value) ||
+           // If 5 chars, it must be 4 digits and then a letter
+           courseNumber.value.length === 5 && !validNumberRegEx2.test(courseNumber.value)
+         ) {
+         setElemText(errorMsgElem, "Course Number must be 4 numbers or 4 numbers and 1 letter. Ex: 4444 or 4444A");
+         courseNumber.focus(); 
+         return false;
+       }
+       else {
+         console.log("FORM OK");
+         return true;
+       }
+   } */
 
-  // function validateInstructor() {
-  //     var errorMsgElem = document.getElementById('instructor-error-msg');
-  //     setElemText(errorMsgElem, ""); // Reset error message
+   function validateInstructor() {
+       var errorMsgElem = document.getElementById('instructor-error-msg');
+       setElemText(errorMsgElem, ""); // Reset error message
 
 
-  //     var validNumberRegEx1 = new RegExp('[a-z]', 'gi');
-  //     return false;
-  // }
+       var validNumberRegEx1 = new RegExp('[a-z]', 'gi');
+       return false;
+   }
 
-  // function setElemText(elem, newText) {
-  //   elem.innerHTML = newText;
-  // }
-</script> -->
+   function setElemText(elem, newText) {
+     elem.innerHTML = newText;
+   }
+</script>
 </body>
 </html>
 <!--FOOT Include Ends -->

@@ -35,13 +35,14 @@
 		<property name="password" value="${database.password}" />
 	</bean>
 
-	<bean id="sessionFactory"
+	<bean id="sessionfactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="annotatedClasses">
 			<list>
 				<value>com.tomprince.domain.AdminUser</value>
 				<value>com.tomprince.domain.Semester</value>
+				<value>com.tomprince.domain.UpdateTime</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -56,7 +57,7 @@
 
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
-		<property name="sessionFactory" ref="sessionFactory" />
+		<property name="sessionFactory" ref="sessionfactory" />
 	</bean>
 	<tx:annotation-driven />
 

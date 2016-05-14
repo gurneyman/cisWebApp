@@ -59,7 +59,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tomprince.domain.Semester;
+import com.tomprince.domain.UpdateTime;
 import com.tomprince.service.SemesterService;
+import com.tomprince.service.UpdateTimeService;
 
 @RestController
 public class SemesterRestController {
@@ -75,6 +77,14 @@ public class SemesterRestController {
 	@RequestMapping(value = API.ROUTE + "semester/{id}", method = RequestMethod.GET, produces = "application/json")
 	public Semester getSemester(@PathVariable(value="id") String id) {
 		return semesterService.getSemester(id);
+	}
+	
+	@Autowired
+	private UpdateTimeService updateTimeService;
+	
+	@RequestMapping(value = API.ROUTE + "semester/{semester}/update-time", method = RequestMethod.GET, produces = "application/json")
+	public UpdateTime getBySemester(@PathVariable(value="semester") String semester){
+		return updateTimeService.getBySemester(semester);
 	}
 
 }

@@ -14,8 +14,9 @@ function getStates() {
         {
             state: 'home',
             config: {
-                templateUrl: 'resources/app/dashboard/dashboard.html',
-                url: '/'
+                templateUrl: 'resources/app/home/home.view.html',
+                url: '/',
+                controller: 'HomeController'
             }
         },{
             state: 'course_search',
