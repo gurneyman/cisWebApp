@@ -7,7 +7,7 @@
     HomeController.$inject = ['$scope', 'content'];
 
     function HomeController($scope, content) {
-        content.getCourse("4094").then(function(data){
+        content.getInstructor("0727").then(function(data){
           $scope.semesters = data;
         });
     }
