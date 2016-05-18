@@ -94,7 +94,7 @@ public class HelloController {
 		model.addAttribute("message", "Hello Spring MVC Framework!");
 		return "hello";
 	}
-	@RequestMapping({"/", "/course-search", "course-results", "course-details"})
+	@RequestMapping({"/", "/course-search", "/course-search/results", "course-details"})
 	public String home(ModelMap model) {
 		return "index";
 	}

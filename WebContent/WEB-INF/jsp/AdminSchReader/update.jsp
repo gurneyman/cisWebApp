@@ -34,18 +34,18 @@ $(function() {
 	<br>
 	<!-- Make fields required required="required" -->
 	<form:form action="/18_Prince_Thomas_HW4/admin/display" method="post"
-		commandName="semesterForm">
+		commandName="semesterForm" accept-charset="utf-8">
 		
 		
-		<label for="semesterId">Semester</label> <font color="red"><form:errors path="semesterId"></form:errors></font><br>
+		<label for="semesterId">Semester</label> <font color="red"><form:errors path="semesterId" ></form:errors></font><br>
 		<form:select path="semesterId">
 			<form:option value="" label="--- Select ---" selected="true" disabled="true" />
 			<c:forEach items="${semesters}" var="semester">
 					<form:option value="${semester.semesterId}" label="${semester.semesterName}">${semester.semesterName}
 						(<fmt:formatDate value="${semester.startDate}"
-							pattern="dd/MM/yyyy" /> to
+							pattern="MM/dd/yyyy" /> to
 						<fmt:formatDate value="${semester.endDate}"
-							pattern="dd/MM/yyyy" />)
+							pattern="MM/dd/yyyy" />)
 					</form:option>
 				</c:forEach>
 		</form:select>

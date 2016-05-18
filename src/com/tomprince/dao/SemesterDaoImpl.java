@@ -3,7 +3,6 @@ package com.tomprince.dao;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,7 +29,6 @@ public class SemesterDaoImpl implements SemesterDao  {
        	return sessionfactory.getCurrentSession().createCriteria(Semester.class).list();
 	}
 	
-	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional
 	public Semester getSemester(String id) {

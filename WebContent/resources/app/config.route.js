@@ -22,19 +22,23 @@ function getStates() {
             state: 'course_search',
             config: {
                 templateUrl: 'resources/app/course/search.html',
-                url: '/course-search'
+                url: '/course-search',
+                controller: 'SearchController'
             }
         },{
             state: 'course_results',
             config: {
                 templateUrl: 'resources/app/course/results.html',
-                url: '/course-results'
+                url: '/course-search/results',
+                controller: 'ResultsController'
             }
         },{
             state: 'course_details',
             config: {
                 templateUrl: 'resources/app/course/details.html',
-                url: '/course-details'
+                url: '/course-details/:semesterName/:startDate/:discipline/:courseNumber/:sectionCode/:courseCode',
+                //url: '/course/:department/:code
+                controller: 'DetailsController'
             }
         }
     ];

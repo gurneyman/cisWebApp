@@ -18,7 +18,7 @@
     </c:if>
 <H2>Please Enter your User ID and Password</H2>
 <br>
- <form name='f' action="${pageContext.request.contextPath}/j_spring_security_check" method='POST'>
+ <form name='f' action="${pageContext.request.contextPath}/j_spring_security_check" method='POST' accept-charset="utf-8">
       <table>
          <tr>
             <td>User:</td>

@@ -1,294 +1,245 @@
+<!-- <pre>{{ model.sections | json }}</pre> -->
 <!-- Changed method to get -->
-<form id="scheduleSearch" method="get" action="./course-details" accept-charset="utf-8">
-
+<form id="scheduleSearch" method="post" action="./course-search" accept-charset="utf-8">
     <div align="center">
-      <h2>Schedule of Classes Search</h2>
-      <p>
-        Enter the professor's name, discipline, course number and/or days you wish to search.
-      </p>
-      <p id="main-error-msg" class="alert alert--form-error">
-        <!-- Error message goes here -->
-      </p>
-      <table id="search" summary="This table contains search options for the schedule of classes.">
-        <!-- Removed the link to error page and made this dynamic with js. -->
-    <tbody>
-        <tr>
-          <th><label for="semester">Semester:</label></th>
-          <td><select id="semester" name="semester">
-              <option value='Spring'>Spring 2007 (01/29/2007 to 05/17/2007)</option>
-        <option value='January Intersession'>January Intersession 2007 (01/02/2007 to 01/25/2007)</option>
-        <option value='Fall'>Fall 2006 (08/30/2006 to 12/13/2006)</option>
-        <option value='Summer ALL'>Summer ALL 2006 (06/01/2006 to 08/17/2006)</option>
-        <option value='Summer00'>Summer00 2006 (06/01/2006 to 08/17/2006)</option>
-        <option value='Summer02'>Summer02 2006 (07/10/2006 to 08/17/2006)</option>
-        <option value='Summer01'>Summer01 2006 (06/01/2006 to 07/06/2006)</option>
-        
-          </select></td>
-        </tr>
-        <tr>
-          <th>Dept:</th>
-          <td><select name="department" size="1">
-      <option value="00">Select All</option>
-      <option value="ACC">ACCOUNTANCY</option>
-      <option value="AMS">AMERICAN STUDIES</option>
-      <option value="ANT">ANTHROPOLOGY</option>
-      <option value="ARB">ARABIC</option>
-      <option value="ART">ART</option>
-      <option value="AAS">ASIAN AMERICAN STUDIES</option>
-      <option value="BIO">BIOLOGY</option>
-      <option value="BLS">BLACK STUDIES</option>
-      <option value="BUS">BUSINESS ADMINISTRATION</option>
-      <option value="BPL">BUSINESS POLICY</option>
-      <option value="CHM">CHEMISTRY</option>
-      <option value="CHI">CHINESE</option>
-      <option value="MBA">COHORT MBA COURSES</option>
-      <option value="COM">COMMUNICATION STUDIES</option>
-      <option value="CIS">COMPUTER INFORMATION SYSTEMS</option>
-      <option value="CSTM">CONTINUING STUDIES - MATH</option>
-      <option value="ECO">ECONOMICS</option>
-      <option value="EDU">EDUCATION</option>
-      <option value="ENG">ENGLISH</option>
-      <option value="ENV">ENVIRONMENTAL STUDIES</option>
-      <option value="FLM">FILM</option>
-      <option value="FIN">FINANCE</option>
-      <option value="FPA">FINE/PERFORMING ARTS</option>
-      <option value="FRE">FRENCH</option>
-      <option value="FRO">FRESHMAN SEMINAR</option>
-      <option value="HEB">HEBREW</option>
-      <option value="HSP">HISPANIC STUDIES</option>
-      <option value="HIS">HISTORY</option>
-      <option value="INS">INSURANCE</option>
-      <option value="IDC">INTERDISCIPLINARY COURSES</option>
-      <option value="IBS">INTERNATIONAL BUSINESS</option>
-      <option value="ITL">ITALIAN</option>
-      <option value="JPN">JAPANESE</option>
-      <option value="LACS">LATIN AMERICA AND CARIB STDS</option>
-      <option value="LAW">LAW</option>
-      <option value="LIB">LIBRARY</option>
-      <option value="LTT">LITERATURE IN TRANSLATION</option>
-      <option value="MGT">MANAGEMENT</option>
-      <option value="MKT">MARKETING</option>
-      <option value="MTH">MATHEMATICS</option>
-      <option value="MSC">MUSIC</option>
-      <option value="OPR">OPERATION RESEARCH</option>
-      <option value="PHI">PHILOSOPHY</option>
-      <option value="PED">PHYSICAL EDUCATION</option>
-      <option value="PHY">PHYSICS</option>
-      <option value="POL">POLITICAL SCIENCE</option>
-      <option value="POR">PORTUGESE</option>
-      <option value="PSY">PSYCHOLOGY</option>
-      <option value="PUB">PUBLIC ADMINISTRATION</option>
-      <option value="PAF">PUBLIC AFFAIRS</option>
-      <option value="RES">REAL ESTATE</option>
-      <option value="REL">RELIGION</option>
-      <option value="SOC">SOCIOLOGY</option>
-      <option value="SPA">SPANISH</option>
-      <option value="STA">STATISTICS</option>
-      <option value="TAX">TAXATION</option>
-      <option value="THE">THEATRE</option>
-      <option value="TRA">TRANSFER SEMINAR</option>
-      </select></td>
-        </tr>
-        <tr>
-          <th>Discipline:</th>
-          <td><select name="discipline" size="1">
-          <option value="00">Select All</option>
-      <option value="AAS">AAS</option>
-      <option value="ACC">ACC</option>
-      <option value="AMS">AMS</option>
-      <option value="ANT">ANT</option>
-      <option value="ARB">ARB</option>
-      <option value="ART">ART</option>
-      <option value="BIO">BIO</option>
-      <option value="BLS">BLS</option>
-      <option value="BPL">BPL</option>
-      <option value="BUS">BUS</option>
-      <option value="CHI">CHI</option>
-      <option value="CHM">CHM</option>
-      <option value="CIS">CIS</option>
-      <option value="COM">COM</option>
-      <option value="CSTM">CSTM</option>
-      <option value="ECO">ECO</option>
-      <option value="EDU">EDU</option>
-      <option value="ENG">ENG</option>
-      <option value="ENV">ENV</option>
-      <option value="FIN">FIN</option>
-      <option value="FLM">FLM</option>
-      <option value="FPA">FPA</option>
-      <option value="FRE">FRE</option>
-      <option value="FRO">FRO</option>
-      <option value="HEB">HEB</option>
-      <option value="HIS">HIS</option>
-      <option value="HSP">HSP</option>
-      <option value="IBS">IBS</option>
-      <option value="IDC">IDC</option>
-      <option value="INS">INS</option>
-      <option value="ITL">ITL</option>
-      <option value="JPN">JPN</option>
-      <option value="LACS">LACS</option>
-      <option value="LAW">LAW</option>
-      <option value="LIB">LIB</option>
-      <option value="LTT">LTT</option>
-      <option value="MBA">MBA</option>
-      <option value="MGT">MGT</option>
-      <option value="MKT">MKT</option>
-      <option value="MSC">MSC</option>
-      <option value="MTH">MTH</option>
-      <option value="OPR">OPR</option>
-      <option value="PAF">PAF</option>
-      <option value="PED">PED</option>
-      <option value="PHI">PHI</option>
-      <option value="PHY">PHY</option>
-      <option value="POL">POL</option>
-      <option value="POR">POR</option>
-      <option value="PSY">PSY</option>
-      <option value="PUB">PUB</option>
-      <option value="REL">REL</option>
-      <option value="RES">RES</option>
-      <option value="SOC">SOC</option>
-      <option value="SPA">SPA</option>
-      <option value="STA">STA</option>
-      <option value="TAX">TAX</option>
-      <option value="THE">THE</option>
-      <option value="TRA">TRA</option>
-      </select></td>
-        </tr>
-        <tr>
-          <th>Division</th>
-          <td>
-            <label for="undergraduate">Undergraduate </label><input type="checkbox" id="undergraduate" value="U" name="div_undr" checked>
-            <br>
-            <label for="graduate">Graduate</label><input type="checkbox" id="gradaute" value="G" name="div_grad" checked>
-          </td>
-        </tr>
-        <tr>
-          <th><label for="number">Course number:</label></th>
-          <td>
-            <div id="number-error-msg" class="alert alert--form-error"><!-- Number Message Goes Here --></div>
-            <input id="number" size="10" name="number" maxlength="5" type="text">
-          </td>
-        </tr>
-        <tr>
-          <th><label for="days">Days:</label></th>
-          <td><select id="days" name="week">
-              <option value="Select All">Select All</option>
-              <option value="M">Mon </option>
-              <option value="MTW">Mon-Tue-Wed </option>
-              <option value="MTWF">Mon-Tue-Wed-Fri </option>
-              <option value="MTWTH">Mon-Tue-Wed-Thr </option>
-              <option value="MW">Mon-Wed </option>
-              <option value="MWTH">Mon-Wed-Thr </option>
-              <option value="MTH">Mon-Thr </option>
-              <option value="T">Tue </option>
-              <option value="TWF">Tue-Wed-Fri </option>
-              <option value="TWTH">Tue-Wed-Thu </option>
-              <option value="TTH">Tue-Thr </option>
-              <option value="TF">Tue-Fri </option>
-              <option value="W">Wed </option>
-              <option value="TH">Thr </option>
-              <option value="F">Fri </option>
-              <option value="S">Sat </option>
-              <option value="SU">Sun </option>
-          </select></td>
-        </tr>
-        <tr>
-          <th><label for="time">Time:</label></th>
-          <td><select id="time" name="time_a_b">
-              <option value="">Select All </option>
-              <option>before </option>
-              <option>after </option>
-              <option>around </option>
-            </select>
-            <select name="time">
-              <option value="0">Select All</option>
-              <option value="7">7:00am </option>
-              <option value="8">8:00am </option>
-              <option value="9">9:00am </option>
-              <option value="10">10:00am </option>
-              <option value="11">11:00am </option>
-              <option value="12">12:00pm </option>
-              <option value="13">1:00pm </option>
-              <option value="14">2:00pm </option>
-              <option value="15">3:00pm </option>
-              <option value="16">4:00pm </option>
-              <option value="17">5:00pm </option>
-              <option value="18">6:00pm </option>
-              <option value="19">7:00pm </option>
-              <option value="20">8:00pm </option>
-              <option value="21">9:00pm </option>
-            </select>          </td>
-        </tr>
-        <tr>
-          <!-- Changed labels for consistency and for validate.js -->
-          <th><label for="instructor">Instructor:</label></th>
-          <td>
-            <div id="instructor-error-msg" class="alert alert--form-error"><!-- Instructor Message Goes Here --></div>
-            <input id="instructor" size="30" name="instructor" type="text">
-          </td>
-        </tr>
-      </tbody>
-      </table>
+        <h2>Schedule of Classes Search</h2>
+        <p>
+            Enter the professor's name, discipline, course number and/or days you wish to search.
+        </p>
+        <p id="main-error-msg" class="alert alert--form-error">
+            <!-- Error message goes here -->
+        </p>
+        <!-- <pre>{{course | json}}</pre> -->
+        <table id="search" summary="This table contains search options for the schedule of classes.">
+            <!-- Removed the link to error page and made this dynamic with js. -->
+            <tbody>
+                <tr>
+                    <th>
+                        <label for="semester">Semester:</label>
+                    </th>
+                    <td>
+                        <select id="semester" name="semester" ng-model="course.semesterId" ng-init="course.semesterId = '1'" ng-change="findSemesterById(course)">
+                            <option value='{{ semester.semesterId }}' ng-repeat="semester in model.semesters">{{ semester.semesterName }} {{semester.startDate | date: 'yyyy' }} ({{ semester.startDate | date: 'MM/dd/yyyy' }} to {{ semester.endDate | date: 'MM/dd/yyyy' }})</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Dept:</th>
+                    <td>
+                        <select name="department" size="1" ng-model="course.departmentId" ng-init="course.departmentId = 'ALL'">
+                            <option value="ALL">Select All</option>
+                            <option value="{{ department.id }}" ng-repeat="department in model.departments">{{ department.name }}</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Discipline:</th>
+                    <td>
+                        <select name="discipline" size="1" ng-model="course.discipline" ng-init="course.discipline = 'ALL'" ng-change="query.discipline = course.discipline">
+                            <option value="ALL">Select All</option>
+                            <option value="{{ discipline.abbreviation }}" ng-repeat="discipline in model.disciplines">{{ discipline.abbreviation }}</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Division</th>
+                    <td>
+                        <label for="undergraduate">Undergraduate </label>
+                        <input type="checkbox" id="undergraduate" value="U" name="div_undr" ng-model="course.isUndergrad" ng-init="course.isUndergrad = true" checked>
+                        <br>
+                        <label for="graduate">Graduate</label>
+                        <input type="checkbox" id="gradaute" value="G" name="div_grad" ng-model="course.isGrad" ng-init="course.isGrad = true" checked>
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        <label for="number">Course number:</label>
+                    </th>
+                    <td>
+                        <div id="number-error-msg" class="alert alert--form-error">
+                            <!-- Number Message Goes Here -->
+                        </div>
+                        <input id="number" size="10" name="number" maxlength="5" type="text" ng-model="course.courseNumber" ng-init="course.courseNumber = ''">
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        <label for="days">Days:</label>
+                    </th>
+                    <td>
+                        <select id="days" name="week" ng-model="course.days" ng-init="course.days = 'ALL'">
+                            <option value="ALL">Select All</option>
+                            <option value="M">Mon </option>
+                            <option value="MTW">Mon-Tue-Wed </option>
+                            <option value="MTWF">Mon-Tue-Wed-Fri </option>
+                            <option value="MTWTH">Mon-Tue-Wed-Thr </option>
+                            <option value="MW">Mon-Wed </option>
+                            <option value="MWTH">Mon-Wed-Thr </option>
+                            <option value="MTH">Mon-Thr </option>
+                            <option value="T">Tue </option>
+                            <option value="TWF">Tue-Wed-Fri </option>
+                            <option value="TWTH">Tue-Wed-Thu </option>
+                            <option value="TTH">Tue-Thr </option>
+                            <option value="TF">Tue-Fri </option>
+                            <option value="W">Wed </option>
+                            <option value="TH">Thr </option>
+                            <option value="F">Fri </option>
+                            <option value="S">Sat </option>
+                            <option value="SU">Sun </option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        <label for="time">Time:</label>
+                    </th>
+                    <td>
+                        <select id="time" name="time_a_b" ng-model="course.timeMod" ng-init="course.timeMod = 'ALL'">
+                            <option value="ALL">Select All</option>
+                            <option value="before">before</option>
+                            <option value="after">after</option>
+                            <option value="around">around </option>
+                        </select>
+                        <select name="time" ng-model="course.time" ng-init="course.time = 'ALL'">
+                            <option value="ALL">Select All</option>
+                            <option value="7">7:00am </option>
+                            <option value="8">8:00am </option>
+                            <option value="9">9:00am </option>
+                            <option value="10">10:00am </option>
+                            <option value="11">11:00am </option>
+                            <option value="12">12:00pm </option>
+                            <option value="13">1:00pm </option>
+                            <option value="14">2:00pm </option>
+                            <option value="15">3:00pm </option>
+                            <option value="16">4:00pm </option>
+                            <option value="17">5:00pm </option>
+                            <option value="18">6:00pm </option>
+                            <option value="19">7:00pm </option>
+                            <option value="20">8:00pm </option>
+                            <option value="21">9:00pm </option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <!-- Changed labels for consistency and for validate.js -->
+                    <th>
+                        <label for="instructor">Instructor:</label>
+                    </th>
+                    <td>
+                        <div id="instructor-error-msg" class="alert alert--form-error">
+                            <!-- Instructor Message Goes Here -->
+                        </div>
+                        <input id="instructor" size="30" name="instructor" type="text" ng-model="course.instructorLastName" ng-init="course.instructorLastName = ''" ng-change="query.instructor = course.instructorLastName">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
     <p align="center">
-      <input value="Start Search" type="submit">
-   </p>
- 
+        <input value="Start Search" ng-click="search(course)" type="button">
+    </p>
 </form>
+<div ng-repeat="(discipline, courses) in model.sections">
+    <h1 style="border-bottom: 1px solid #10163C; padding-bottom: 0; margin-bottom: 15px; margin-top: 25px">{{discipline}}</h1>
+    <div ng-repeat="(number, sections) in courses">
+        <div ng-repeat="section in sections">
+            <h2 style="margin-top: 15px;"><a ui-sref="course_details({semesterName: course.semester.semesterName, startDate: course.semester.startDate, discipline: section[0].discipline, courseNumber: section[0].courseNumber, courseCode: section[0].courseCode, sectionCode: section[0].sectionCode})">{{section[0].discipline}} {{section[0].courseNumber}} {{section[0].sectionCode}}</a></h2>
+            <p>Code: {{section[0].courseCode}} Section: </p>
+            <table id="results" style="width:100%">
+                <tr style="text-align: center">
+                    <th>Weekly Meetings</th>
+                    <th>Start/End Dates</th>
+                    <th>Location</th>
+                    <th>Instructor</th>
+                    <th>Seats</th>
+                </tr>
+                <tr>
+                    <td><span ng-repeat="meeting in section | orderBy:'instructorLastName'">{{meeting.days}} <span ng-if="meeting.days !== 'HTBA'">{{meeting.startTime}} - {{meeting.stopTime}}{{meeting.dayPeriod}}</span>
+                        <br/>
+                        </span>
+                    </td>
+                    <td><span ng-repeat="meeting in section | orderBy:'instructorLastName'">{{section.startDate | date: 'MM/dd/yyyy'}} - {{section.endDate | date: 'MM/dd/yyyy'}} <br></span></td>
+                    <td><span ng-repeat="meeting in section | orderBy:'instructorLastName'">{{meeting.building}} {{meeting.room}} <br/></span></td>
+                    <td><span ng-repeat="meeting in section | orderBy:'instructorLastName'">{{meeting.instructorLastName}}<br/></span></td>
+                    <td><span ng-repeat="meeting in section | orderBy:'instructorLastName'">{{meeting.seatsAvailable}}<br/></span></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- <div ng-repeat="(discipline, courses) in model.sections">
+        <div ng-repeat="(number, sections) in courses">
+            <div ng-repeat="section in sections">
+                <table id="results" summary="This table contains the search results for schedule of classes." style="width:100%">
+                    
+                    <tr style="width: 100%">
+                        <td><a ui-sref="course_details({semesterName: course.semester.semesterName, startDate: course.semester.startDate, discipline: section[0].discipline, courseNumber: section[0].courseNumber, courseCode: section[0].courseCode, sectionCode: section[0].sectionCode})">{{section[0].discipline}} {{section[0].courseNumber}}</a></td>
+                        <td>{{section[0].courseCode}}</td>
+                        <td>{{section[0].sectionCode}}</td>
+                        <td><span ng-repeat="meeting in section | orderBy:'instructorLastName'">{{meeting.days}} <span ng-if="meeting.days !== 'HTBA'">{{meeting.startTime}} - {{meeting.stopTime}}{{meeting.dayPeriod}}</span><br/></span></td>
+                        <td><span ng-repeat="meeting in section | orderBy:'instructorLastName'">{{section.startDate | date: 'MM/dd/yyyy'}} - {{section.endDate | date: 'MM/dd/yyyy'}} <br></span></td>
+                        <td><span ng-repeat="meeting in section | orderBy:'instructorLastName'">{{meeting.building}} {{meeting.room}} <br/></span></td>
+                        <td><span ng-repeat="meeting in section | orderBy:'instructorLastName'">{{meeting.instructorLastName}}<br/></span></td>
+                        <td><span ng-repeat="meeting in section | orderBy:'instructorLastName'">{{meeting.seatsAvailable}}<br/></span></td>
+                        <td>Course has a lab and lecture </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div> -->
 <!-- All of this needs to go into the controller so it loads at the right time. -->
 <script>
-  var validator = new FormValidator('scheduleSearch', [{
-      name: 'number',
-      display: 'Course Number',
-      rules: 'callback_course_format'
-  },
-  {
-      name: 'instructor',
-      display: 'Instructor',
-      rules: 'callback_instructor_format'
-  }
-  ], function(errors, event) {
-      for(var field in validator.fields){
+var validator = new FormValidator('scheduleSearch', [{
+    name: 'number',
+    display: 'Course Number',
+    rules: 'callback_course_format'
+}, {
+    name: 'instructor',
+    display: 'Instructor',
+    rules: 'callback_instructor_format'
+}], function(errors, event) {
+    for (var field in validator.fields) {
         validator.fields[field].errorElem.innerHTML = "";
-      }
+    }
 
-      if (errors.length > 0) {
-          // Prevent form submission
-          event.preventDefault();
+    if (errors.length > 0) {
+        // Prevent form submission
+        event.preventDefault();
 
-          // TODO: Reset error messages on submit
-          document.getElementById("main-error-msg").innerHTML = "Please correct errors below";
-          
+        // TODO: Reset error messages on submit
+        document.getElementById("main-error-msg").innerHTML = "Please correct errors below";
 
-          // Show the errors
-          for (var i = 0, errorLength = errors.length; i < errorLength; i++) {
+
+        // Show the errors
+        for (var i = 0, errorLength = errors.length; i < errorLength; i++) {
             var msgBox = validator.fields[errors[i].name].errorElem;
             msgBox.innerHTML = "";
             console.log(errors[i].name + " has an error.");
             msgBox.innerHTML += errors[i].message;
         }
-      }
-  });
+    }
+});
 
-  // Grab error field elements and attach to validator fields
-  for(var field in validator.fields){
+// Grab error field elements and attach to validator fields
+for (var field in validator.fields) {
     validator.fields[field].errorElem = document.getElementById(field + "-error-msg");
-  }
+}
 
-  validator.registerCallback('course_format', function(value) {
-    if (validateNumber(value)) {
-        return true;
-    }
-    return false;
-  })
-  .setMessage('course_format', '%s must be 4 digits or 4 digits and 1 letter.');
+validator.registerCallback('course_format', function(value) {
+        if (validateNumber(value)) {
+            return true;
+        }
+        return false;
+    })
+    .setMessage('course_format', '%s must be 4 digits or 4 digits and 1 letter.');
 
-  validator.registerCallback('instructor_format', function(value) {
-    if (/^[a-zA-Z ]*$/.test(value)) {
-        return true;
-    }
-    return false;
-  })
-  .setMessage('instructor_format', '%s must be only letters and spaces.');
+validator.registerCallback('instructor_format', function(value) {
+        if (/^[a-zA-Z ]*$/.test(value)) {
+            return true;
+        }
+        return false;
+    })
+    .setMessage('instructor_format', '%s must be only letters and spaces.');
 
 /* function validateNumber(value) {
       console.log(value.length);
@@ -317,72 +268,68 @@
       
   } */
 </script>
-
-
 <script>
-  function validate()
-       {
-         var mainErrMsgElem = document.getElementById('main-error-msg');
-         setElemText(mainErrMsgElem, ""); // Reset error message
+function validate() {
+    var mainErrMsgElem = document.getElementById('main-error-msg');
+    setElemText(mainErrMsgElem, ""); // Reset error message
 
-         var isValid = false;
-
-
-         // Validate number
-         isValid = validateNumber();
-
-         // Validate instructor
-         isValid = validateInstructor();
-        
-         if(!isValid){
-           setElemText(mainErrMsgElem, "Please correct errors below.");
-         }
-         return isValid;
-       }
-  
-    function validateNumber() {
-      
-       var errorMsgElem = document.getElementById('number-error-msg');
-       setElemText(errorMsgElem, ""); // Reset error message
-
-       // Match 4 digits only
-       var validNumberRegEx1 = new RegExp('[\\d]{4}');
-       // Match 4 digits and one char
-       var validNumberRegEx2 = new RegExp('[\\d]{4}[\\w]', 'i');
-
-       var courseNumber = document.forms["scheduleSearch"]["number"];
-      
-       // Not 4 or 5 chars - Set error to "Course number must be 4 digits or 4 digits and 1 letter."
-       if(
-           // Don't check if it's empty
-           courseNumber.value.length <= 0 ||
-           // Course number must be at least 4 digits long
-           courseNumber.value.length < 4 ||
-           // the first 4 chars must be digits
-           courseNumber.value.length === 4 && !validNumberRegEx1.test(courseNumber.value) ||
-           // If 5 chars, it must be 4 digits and then a letter
-           courseNumber.value.length === 5 && !validNumberRegEx2.test(courseNumber.value)
-         ) {
-         setElemText(errorMsgElem, "Course Number must be 4 numbers or 4 numbers and 1 letter. Ex: 4444 or 4444A");
-         courseNumber.focus();
-         return false;
-       }
-       else {
-         console.log("FORM OK");
-         return true;
-       }
-   } 
-
-   function validateInstructor() {
-       var errorMsgElem = document.getElementById('instructor-error-msg');
-       setElemText(errorMsgElem, ""); // Reset error message
+    var isValid = false;
 
 
-       var validNumberRegEx1 = new RegExp('[a-z]', 'gi');
-       return false;
-   }
+    // Validate number
+    isValid = validateNumber();
 
-   function setElemText(elem, newText) {
-     elem.innerHTML = newText;
-   }
+    // Validate instructor
+    isValid = validateInstructor();
+
+    if (!isValid) {
+        setElemText(mainErrMsgElem, "Please correct errors below.");
+    }
+    return isValid;
+}
+
+function validateNumber() {
+
+    var errorMsgElem = document.getElementById('number-error-msg');
+    setElemText(errorMsgElem, ""); // Reset error message
+
+    // Match 4 digits only
+    var validNumberRegEx1 = new RegExp('[\\d]{4}');
+    // Match 4 digits and one char
+    var validNumberRegEx2 = new RegExp('[\\d]{4}[\\w]', 'i');
+
+    var courseNumber = document.forms["scheduleSearch"]["number"];
+
+    // Not 4 or 5 chars - Set error to "Course number must be 4 digits or 4 digits and 1 letter."
+    if (
+        // Don't check if it's empty
+        courseNumber.value.length <= 0 ||
+        // Course number must be at least 4 digits long
+        courseNumber.value.length < 4 ||
+        // the first 4 chars must be digits
+        courseNumber.value.length === 4 && !validNumberRegEx1.test(courseNumber.value) ||
+        // If 5 chars, it must be 4 digits and then a letter
+        courseNumber.value.length === 5 && !validNumberRegEx2.test(courseNumber.value)
+    ) {
+        setElemText(errorMsgElem, "Course Number must be 4 numbers or 4 numbers and 1 letter. Ex: 4444 or 4444A");
+        courseNumber.focus();
+        return false;
+    } else {
+        console.log("FORM OK");
+        return true;
+    }
+}
+
+function validateInstructor() {
+    var errorMsgElem = document.getElementById('instructor-error-msg');
+    setElemText(errorMsgElem, ""); // Reset error message
+
+
+    var validNumberRegEx1 = new RegExp('[a-z]', 'gi');
+    return false;
+}
+
+function setElemText(elem, newText) {
+    elem.innerHTML = newText;
+}
 </script>

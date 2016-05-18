@@ -50,16 +50,39 @@ http://stackoverflow.com/questions/24053139/spring-mvc-form-validation-date-fiel
 */
 package com.tomprince.api.v1;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.tomprince.domain.Course;
+import com.tomprince.domain.CourseComments;
+import com.tomprince.domain.CourseSection;
+import com.tomprince.domain.Department;
+import com.tomprince.domain.Discipline;
+import com.tomprince.domain.Instructor;
+import com.tomprince.domain.Search;
 import com.tomprince.domain.Semester;
 import com.tomprince.domain.UpdateTime;
+import com.tomprince.service.CourseCommentsService;
+import com.tomprince.service.CourseSectionService;
+import com.tomprince.service.CourseService;
+import com.tomprince.service.DepartmentService;
+import com.tomprince.service.DisciplineService;
+import com.tomprince.service.InstructorService;
 import com.tomprince.service.SemesterService;
 import com.tomprince.service.UpdateTimeService;
 
@@ -67,8 +90,29 @@ import com.tomprince.service.UpdateTimeService;
 public class SemesterRestController {
 
 	@Autowired
+	private CourseService courseService;
+	
+	@Autowired
+	private CourseSectionService courseSectionService;
+	
+	@Autowired
+	private CourseCommentsService courseCommentsService;
+	
+	@Autowired
+	private DepartmentService departmentService;
+	
+	@Autowired
+	private DisciplineService disciplineService;
+	
+	@Autowired
 	private SemesterService semesterService;
-
+	
+	@Autowired
+	private UpdateTimeService updateTimeService;
+	
+	@Autowired
+	private InstructorService instructorService;
+	
 	@RequestMapping(value = API.ROUTE + "semesters", method = RequestMethod.GET, produces = "application/json")
 	public List<Semester> getSemesters() {
 		return semesterService.getSemesters();
@@ -79,12 +123,97 @@ public class SemesterRestController {
 		return semesterService.getSemester(id);
 	}
 	
-	@Autowired
-	private UpdateTimeService updateTimeService;
-	
 	@RequestMapping(value = API.ROUTE + "semester/{semester}/update-time", method = RequestMethod.GET, produces = "application/json")
 	public UpdateTime getBySemester(@PathVariable(value="semester") String semester){
 		return updateTimeService.getBySemester(semester);
+	}
+	
+	@RequestMapping(value = API.ROUTE + "course/{discipline}/{number}", method = RequestMethod.GET, produces = "application/json")
+	public Course getByNumber(@PathVariable(value="discipline") String discipline, @PathVariable(value="number") String number){
+		return courseService.getByNumber(discipline, number);
+	}
+	
+	@RequestMapping(value = API.ROUTE + "courses", method = RequestMethod.GET, produces = "application/json")
+	public List<Course> getCourses(){
+		return courseService.getAll();
+	}
+	
+	@RequestMapping(value = API.ROUTE + "course-sections", method = RequestMethod.GET, produces = "application/json")
+	public List<CourseSection> getCourseSections(){
+		return courseSectionService.getAll();
+	}
+	
+	@RequestMapping(value = API.ROUTE + "course-section/{courseIndex}", method = RequestMethod.GET, produces = "application/json")
+	public CourseSection getSectionByCourseIndex(@PathVariable(value="courseIndex") String courseIndex){
+		return courseSectionService.getByIndex(courseIndex);
+	}
+	@RequestMapping(value = API.ROUTE + "course-section/by-code/{courseCode}", method = RequestMethod.GET, produces = "application/json")
+	public CourseSection getSectionByCourseCode(@PathVariable(value="courseCode") String courseCode){
+		return courseSectionService.getByCode(courseCode);
+	}
+	
+	@RequestMapping(value = API.ROUTE + "course-section/by-section/{discipline}/{courseNumber}/{courseSection}", method = RequestMethod.GET, produces = "application/json")
+	public List<CourseSection> getSectionByCourseSection(@PathVariable(value="discipline") String discipline, @PathVariable(value="courseNumber") String courseNumber, @PathVariable(value="courseSection") String courseSection){
+		return courseSectionService.getBySection(discipline, courseNumber, courseSection);
+	}
+	
+	@RequestMapping(value = API.ROUTE + "course-comments", method = RequestMethod.GET, produces = "application/json")
+	public List<CourseComments> getCourseComments(){
+		return courseCommentsService.getAll();
+	}
+	
+	@RequestMapping(value = API.ROUTE + "course-comments/{courseCode}", method = RequestMethod.GET, produces = "application/json")
+	public CourseComments getCommentsByCourseCode(@PathVariable(value="courseCode") String courseCode){
+		return courseCommentsService.getByCourseCode(courseCode);
+	}
+	
+	@RequestMapping(value = API.ROUTE + "departments", method = RequestMethod.GET, produces = "application/json")
+	public List<Department> getDepartments(){
+		return departmentService.getAll();
+	}
+	
+	@RequestMapping(value = API.ROUTE + "department/by-id/{id}", method = RequestMethod.GET, produces = "application/json")
+	public Department getDepartmentById(@PathVariable(value="id") String id){
+		return departmentService.getById(id);
+	}
+	
+	@RequestMapping(value = API.ROUTE + "disciplines", method = RequestMethod.GET, produces = "application/json")
+	public List<Discipline> getDisciplines(){
+		return disciplineService.getAll();
+	}
+	
+	@RequestMapping(value = API.ROUTE + "discipline/by-abbreviation/{abbreviation}", method = RequestMethod.GET, produces = "application/json")
+	public Discipline getDisciplineByAbbreviation(@PathVariable(value="abbreviation") String abbreviation){
+		return disciplineService.getByAbbreviation(abbreviation);
+	}
+	
+	@RequestMapping(value = API.ROUTE + "department/by-name/{name}", method = RequestMethod.GET, produces = "application/json")
+	public Department getDepartmentByName(@PathVariable(value="name") String name){
+		return departmentService.getByName(name);
+	}
+	
+	@RequestMapping(value = API.ROUTE + "instructor/{courseCode}", method = RequestMethod.GET, produces = "application/json")
+	public Instructor getInstructorByCourseCode(@PathVariable(value="courseCode") String courseCode){
+		return instructorService.getByCourseCode(courseCode);
+	}
+	
+	@RequestMapping(value = API.ROUTE + "instructors", method = RequestMethod.GET, produces = "application/json")
+	public List<Instructor> getInstructors(){
+		return instructorService.getAll();
+	}
+	
+	@RequestMapping(value = API.ROUTE + "searchTest", method = RequestMethod.GET, produces = "application/json")
+	public Map<String, Map> searchTest(){
+		// TEST Values		
+		return courseSectionService.getByDate("6", "ALL", "ALL", "ALL", "ALL", "ALL", "ALL", "ALL");
+	}
+	@RequestMapping(value = API.ROUTE + "search/{semesterId}/{discipline}/{departmentId}/{courseNumber}/{days}/{timeMod}/{time}/{instructorLastName}", method = RequestMethod.POST, produces = "application/json")
+	public Map<String, Map> search(@PathVariable String semesterId, @PathVariable String discipline, @PathVariable String departmentId, @PathVariable String courseNumber, @PathVariable String days,
+									@PathVariable String timeMod, @PathVariable String time, @PathVariable String instructorLastName){
+		System.out.println(semesterId);
+		// TEST Values	
+		//return courseSectionService.getByDate(semesterId, discipline, "ALL", "ALL", "ALL", "ALL", "ALL", "ALL");
+		return courseSectionService.getByDate(semesterId, discipline, departmentId, courseNumber, days, timeMod, time, instructorLastName);
 	}
 
 }

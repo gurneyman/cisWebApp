@@ -41,6 +41,12 @@
 		<property name="annotatedClasses">
 			<list>
 				<value>com.tomprince.domain.AdminUser</value>
+				<value>com.tomprince.domain.Course</value>
+				<value>com.tomprince.domain.CourseComments</value>
+				<value>com.tomprince.domain.CourseSection</value>
+				<value>com.tomprince.domain.Department</value>
+				<value>com.tomprince.domain.Discipline</value>
+				<value>com.tomprince.domain.Instructor</value>
 				<value>com.tomprince.domain.Semester</value>
 				<value>com.tomprince.domain.UpdateTime</value>
 			</list>
@@ -75,7 +81,7 @@
 		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
 
 	<security:http auto-config="true" use-expressions="true">
-		<!-- <security:csrf disabled="true"/> -->
+		<security:csrf disabled="true"/>
 		<security:intercept-url pattern="/admin/*"
 			access="hasRole('ROLE_USER')" />
 		<security:form-login login-page='/login' login-processing-url="/j_spring_security_check"

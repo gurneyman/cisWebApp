@@ -15,7 +15,6 @@ public class UpdateTimeDaoImpl implements UpdateTimeDao {
 	@Autowired
 	private SessionFactory sessionfactory;
 
-	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional
 	public UpdateTime getBySemester(String semester) {
